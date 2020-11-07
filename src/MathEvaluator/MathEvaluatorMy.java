@@ -62,7 +62,6 @@ public class MathEvaluatorMy {
 	}
 
 	public static String evalueteParentheses(String expression) {
-//		String[] parts = expression.split("\s+");
 
 		String[] parts = expression.split(" ");
 		String[] trash = expression.split(" ");
@@ -76,7 +75,6 @@ public class MathEvaluatorMy {
 
 		Stack<String> s = new Stack<>();
 
-//		for (int i = 0; i < parts.length; i++) {
 		for (int i = 0; i < size; i++) {
 			if (parts[i].equals(")")) {
 				List<String> exp = new ArrayList<>();
@@ -131,15 +129,13 @@ public class MathEvaluatorMy {
 		while (!s.isEmpty()) {
 			r += s.pop();
 		}
-		// your code here
+
 		return r;
 	}
 
 	public static void main(String[] args) {
-//		double result = new MathEvaluator().calculate("12* 123/-(-5 + 2)");
-		double result = new MathEvaluator().calculate("(1 - 2) + -(-(-(-4)))");
-//		double result = new MathEvaluator().calculate("-123");
-		System.out.println(result);
+		System.out.println(new MathEvaluator().calculate("(2+3) - 2 / (2 + -3) * 4.33 - -6"));
+		  
 	}
 
 }

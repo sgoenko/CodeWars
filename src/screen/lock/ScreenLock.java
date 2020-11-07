@@ -57,10 +57,9 @@ public class ScreenLock {
 		
 		for (int i = 0; i < visitedNodes.length; i++) {
 			if (visitedNodes[i]) {
-				Character ch = (char) ('A' + i);
-				String missed =  ""+ startPosition + ch;
-				if (additionTransitions.containsKey(missed)) {
-					Character addition = additionTransitions.get(missed);
+				String addKey = additionTransitionKey(startPosition, i);
+				if (additionTransitions.containsKey(addKey)) {
+					Character addition = additionTransitions.get(addKey);
 					if (isNotVisited(addition)) {
 						currentTransitions.add(addition);
 					}
@@ -69,17 +68,20 @@ public class ScreenLock {
 		}
 		
 		if (currentTransitions.isEmpty()) {
-			setUnvisited(startPosition);
+			setNotvisited(startPosition);
 			return 0;
-		}
-		
-		for (Character ch : currentTransitions) {
+		} else for (Character ch : currentTransitions) {
 			numberOfCombinations += calculateCombinations(ch, patternLength - 1);
 		}
 
-		setUnvisited(startPosition);
+		setNotvisited(startPosition);
 		
 		return numberOfCombinations;
+	}
+
+	private String additionTransitionKey(char startPosition, int i) {
+		Character ch = (char) ('A' + i);
+		return ""+ startPosition + ch;
 	}
 
 	private boolean isNotVisited(Character ch) {
@@ -90,7 +92,7 @@ public class ScreenLock {
 		visitedNodes[ch - 'A'] = true;
 	}
 
-	private void setUnvisited(Character ch) {
+	private void setNotvisited(Character ch) {
 		visitedNodes[ch - 'A'] = false;
 	}
 
